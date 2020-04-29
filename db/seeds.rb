@@ -8,7 +8,7 @@
 Collection.delete_all
 CollectionsNote.delete_all
 Note.delete_all
-notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E','F', 'F#', 'G', 'G#']
+notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E','F', 'F#', 'G', 'G#', 'A2', 'A#2', 'B2', 'C2', 'C#2', 'D2', 'D#2', 'E2','F2', 'F#2', 'G2', 'G#2']
 
 scales = [
     {:name => 'C Major', :notes => ['C', 'D', 'E', 'F', 'G', 'A', 'B']}, 

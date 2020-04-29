@@ -6,9 +6,11 @@ Rails.application.routes.draw do
       resources :notes, only: [:index]
       resources :collections
       post '/login', to: 'auth#create'
-      get '/profile', to: 'users#profile'
+      get '/profile/:id', to: 'users#profile'
       get '/current_user', to: 'auth#show'
       post '/sign_up', to: 'users#create'
+      get '/scales', to: 'collections#scales'
+      post '/collections', to: 'collections#create'
     end
   end
 end
