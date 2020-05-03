@@ -68,8 +68,15 @@ class Api::V1::CollectionsController < ApplicationController
     end
 
     def destroy
+        puts "hello"
         @collection = Collection.find(params[:id])
+        # byebug
         if @collection
+            @collection_notes = CollectionsNote.where(collection_id: @collection[:id])
+            @collection_notes.each do |instance|
+                puts "in iteration"
+                instance.destroy
+            end
             @collection.destroy
             render json: {message: 'Collection destroyed'}
         else
@@ -79,6 +86,6 @@ class Api::V1::CollectionsController < ApplicationController
 
     private
     def  collection_params
-        params.require(:collection).permit(:id, :scale_name, :is_scale, :user_id, :notes, :created_at, :updated_at)
+        params.require(:collection).permit(:id, :scale_name, :is_scale, :user_id, :notes, :created_at, :updated_at, :chord_progression)
     end
 end
