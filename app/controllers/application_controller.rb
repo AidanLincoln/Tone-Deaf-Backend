@@ -1,15 +1,19 @@
 class ApplicationController < ActionController::API
     before_action :authorized
 
+    def secret_key
+        Rails.application.credentials.secret_key
+    end
+
     def encode_token(user)
         # user is the payload
         puts "encoding"
-        JWT.encode( {user_id: user.id}, 'chorDio', 'HS256')
+        JWT.encode( {user_id: user.id}, secret_key, 'HS256')
     end
 
     def decoded_token
       begin 
-        JWT.decode(token, 'chorDio', true, algorithm: 'HS256' )
+        JWT.decode(token, secret_key, true, algorithm: 'HS256' )
         # JWT.decode => [{ "beef"=>"steak" }, { "alg"=>"HS256" }]
       rescue JWT::DecodeError
         [{error: "Invalid Token"}]
